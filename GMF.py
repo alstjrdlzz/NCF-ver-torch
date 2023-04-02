@@ -4,8 +4,8 @@ import torch.nn as nn
 
 class GMF(nn.Module):
     def __init__(self,
-                 N: int,
                  M: int,
+                 N: int,
                  K: int):
         super().__init__()
 
