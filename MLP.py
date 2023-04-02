@@ -47,7 +47,7 @@ class MLP(nn.Module):
         self.user_embedding_layer = nn.Embedding(M, K)
         self.item_embedding_layer = nn.Embedding(N, K)
         self.neural_cf_layers = nn.ModuleList([NeuralCFLayer(i, K, layer) for i in range(n_layers)])
-        self.output_layer = nn.Linear(self.layer[-1], 1)
+        self.output_layer = nn.Linear(layer[-1], 1)
 
     def forward(self, user, item):
         user_embbedding = self.user_embedding_layer(user)
