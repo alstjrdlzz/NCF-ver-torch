@@ -21,4 +21,4 @@ class GMF(nn.Module):
         x = self.output_layer(x)
         output = nn.Sigmoid(x)
         return output
-    
+
