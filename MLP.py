@@ -59,5 +59,6 @@ class MLP(nn.Module):
         output = nn.Sigmoid(x)
         return output
     
+    
 
 

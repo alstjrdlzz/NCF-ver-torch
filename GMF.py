@@ -14,7 +14,6 @@ class GMF(nn.Module):
         self.item_embedding_layer = nn.Embedding(N, K)
         self.output_layer = nn.Linear(K, 1)
         
-        
     def forward(self, user, item):
         user_embedding = self.user_embedding_layer(user)
         item_embedding = self.item_embedding_layer(item)
@@ -22,3 +21,4 @@ class GMF(nn.Module):
         x = self.output_layer(x)
         output = nn.Sigmoid(x)
         return output
+    
