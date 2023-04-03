@@ -23,8 +23,12 @@ def preprocessor(df: Dict) -> Dict:
             implicit_df['user_id'].append(u)
             implicit_df['movie_id'].append(i)
             if pd.isna(ratings_matrix.loc[user_id, item_id]):
-                implicit_df['implicit_feedback'] = 0
+                implicit_df['implicit_feedback'].append(0)
             else:
-                implicit_df['implicit_feedback'] = 1
+                implicit_df['implicit_feedback'].append(1)
+
+    implicit_df = pd.DataFrame(implicit_df)
+    implicit_df['user_id'] = implicit_df['user_id'].astype('category')
+    implicit_df['movie_id'] = implicit_df['movie_id'].astype('category')
     
     return implicit_df
