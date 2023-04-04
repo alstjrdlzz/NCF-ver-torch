@@ -7,9 +7,9 @@ from preprocessing import preprocessor
 
 class TrainDataset(Dataset):
     def __init__(self,
-                 path: Path):
-        raw_df = pd.read_csv(path/'u.data', sep='\t', 
-                             encoding='latin-1', header=None)
+                 path: str):
+        self.path = Path(path)
+        raw_df = pd.read_csv(self.path/'u.data', sep='\t', encoding='latin-1', header=None)
         raw_df.columns = ['user_id', 'movie_id', 'rating', 'timestamp']
         self.implicit_df = preprocessor(raw_df)
 
