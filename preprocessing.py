@@ -4,9 +4,9 @@ import pandas as pd
 
 def preprocessor(df: Dict) -> Dict:
     user_ids = df['user_id'].unique()
-    item_ids = df['movie_id'].unuque()
+    item_ids = df['movie_id'].unique()
 
-    ratings_matrix = df.pivot(index='user_id', columns='movie_id', values='ratings')
+    ratings_matrix = df.pivot(index='user_id', columns='movie_id', values='rating')
 
     implicit_df = {}
     implicit_df['user_id'] = []
