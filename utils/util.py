@@ -1,12 +1,31 @@
+from pathlib import Path
+import pandas as pd
+from sklearn.model_selection import train_test_split
 import torch
 import torch.optim as optim
 from model import loss
 from model import metric
 
 
-def build_model(config):
+def load_data(data_path):
+    path = Path(data_path)
+    raw_df = pd.read_csv(path/'u.data', sep='\t', encoding='latin-1', header=None)
+    raw_df.columns = ['user_id', 'movie_id', 'rating', 'timestamp']
+    return raw_df
 
-    return model
+def split_data(df, cv_strategy):
+    '''
+    To-do: kfold cv
+    '''
+    name = cv_strategy['name']
+    options = cv_strategy['options']
+
+    if name == 'holdout':
+        train_df, test_df = train_test_split(df, **options)
+    else:
+        raise NotImplementedError
+
+    return train_df, test_df
 
 def prepare_device(config):
     '''

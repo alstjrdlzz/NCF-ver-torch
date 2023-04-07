@@ -1,5 +1,7 @@
 import torch
 import numpy as np
+from data.dataset import TrainDataset
+from data.datamodule import TrainDataModule
 from utils.util import prepare_device
 from utils.util import get_criterion
 from utils.util import get_metrics
@@ -9,9 +11,14 @@ from trainer import Trainer
 
 # To-do: config to json
 config = {
-    'train_data_loader': 
-    'valid_data_loader': 
+    # data
+    'data_path': '/content/data/ml-100k/',
+    'batch_size': 4,
+    'cv_startegy': {'name': 'holdout',
+                    'options': {'test_size': 0.3}},
+    # model
     'arch': ['GMF'],
+    # train
     'n_gpu': 1,
     'loss': ['bce_loss'],
     'metrics': ['accuracy'],
@@ -29,19 +36,15 @@ torch.backends.cudnn.benchmark = False
 np.random.seed(SEED)
 
 def main(config):
-
-    # setup data_loader
-    '''
-    To-do
-    '''
-    train_data_loader = 
-    valid_data_loader = 
+    # setup dataloader
+    train_dataloader = TrainDataModule(config).train_dataloader
+    valid_dataloader = TrainDataModule(config).valid_dataloader
     
     # buld model
     '''
     To-do
     '''
-    model = getattr(GMF, config['arch'])
+    model = 
 
     # prepare device
     device = prepare_device(config)
@@ -60,8 +63,8 @@ def main(config):
     trainer = Trainer(model, criterion, metrics, optimizer,
                       config=config,
                       device=device,
-                      train_data_loader=train_data_loader,
-                      valid_data_lodaer=valid_data_loader,
+                      train_data_loader=train_dataloader,
+                      valid_data_lodaer=valid_dataloader,
                       lr_scheduler=lr_scheduler)
     
     trainer.train()
