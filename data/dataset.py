@@ -7,7 +7,7 @@ class TrainDataset(Dataset):
         self.df = df
 
     def __len__(self):
-        return len(self.implicit_df)
+        return len(self.df)
 
     def __getitem__(self, idx):
         X = self.df[['user_id', 'movie_id']].values[idx, :]
