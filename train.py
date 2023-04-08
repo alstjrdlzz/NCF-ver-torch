@@ -2,6 +2,7 @@ import torch
 import numpy as np
 from data.dataset import TrainDataset
 from data.datamodule import TrainDataModule
+from utils.util import init_model
 from utils.util import prepare_device
 from utils.util import get_criterion
 from utils.util import get_metrics
@@ -17,7 +18,10 @@ config = {
     'cv_startegy': {'name': 'holdout',
                     'options': {'test_size': 0.3}},
     # model
-    'arch': ['GMF'],
+    'model': {'name': 'GMF',
+              'options': {'M': 16,
+                          'N': 16,
+                          'K': 20}},
     # train
     'n_gpu': 1,
     'loss': ['bce_loss'],
@@ -40,11 +44,8 @@ def main(config):
     train_dataloader = TrainDataModule(config).train_dataloader
     valid_dataloader = TrainDataModule(config).valid_dataloader
     
-    # buld model
-    '''
-    To-do
-    '''
-    model = 
+    # init model
+    model = init_model(config)
 
     # prepare device
     device = prepare_device(config)
