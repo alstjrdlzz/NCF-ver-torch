@@ -3,6 +3,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import torch
 import torch.optim as optim
+from model.MLP import MLP
+from model.GMF import GMF
 from model import loss
 from model import metric
 
@@ -26,6 +28,21 @@ def split_data(df, cv_strategy):
         raise NotImplementedError
 
     return train_df, test_df
+
+def init_model(config):
+    name = config['model']['name']
+    options = config['model']['options']
+
+    if name == 'GMF':
+        model = GMF(**options)
+
+    elif name == 'MLP':
+        model = MLP(**options)
+
+    else:
+        raise NotImplementedError
+
+    return model
 
 def prepare_device(config):
     '''
