@@ -15,6 +15,7 @@ TO-DO
 * buld_model
 * Trainer
 * kfold
+* reg <-> clf
 * preprocessing option
 * config to json
 * wandb logging
