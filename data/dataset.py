@@ -12,4 +12,4 @@ class TrainDataset(Dataset):
     def __getitem__(self, idx):
         X = self.df[['user_id', 'movie_id']].values[idx, :]
         y = self.df['implicit_feedback'].values[idx]
-        return torch.tensor(X), torch.tensor(y)
+        return torch.tensor(X, dtype=torch.long), torch.tensor(y, dtype=torch.float)
