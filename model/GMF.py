@@ -13,11 +13,13 @@ class GMF(nn.Module):
         self.user_embedding_layer = nn.Embedding(M, K)
         self.item_embedding_layer = nn.Embedding(N, K)
         self.output_layer = nn.Linear(K, 1)
+        self.sigmoid = nn.Sigmoid()
         
-    def forward(self, user, item):
+    def forward(self, x):
+        user, item = torch.split(x, [1, 1], -1)
         user_embedding = self.user_embedding_layer(user)
         item_embedding = self.item_embedding_layer(item)
-        x = user_embedding * item_embedding
+        x = torch.mul(user_embedding, item_embedding)
         x = self.output_layer(x)
-        output = nn.Sigmoid(x)
+        output = self.sigmoid(x)
         return output
