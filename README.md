@@ -12,14 +12,13 @@
 |2023-04-08|모델 선언을 위한 init_model 함수 구현|서민석|
 |2023-04-09|학습을 위한 trainer 구현|서민석|
 |2023-04-09|배치 생성 시 생기는 bottelneck 해결|서민석|
+|2023-04-10|Weight&Bias monitoring 구현|서민석|
 
 
 TO-DO
 ---
-* Trainer
 * kfold
 * reg <-> clf
 * preprocessing option
 * config to json
-* wandb logging
 * inference
