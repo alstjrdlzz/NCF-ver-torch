@@ -28,7 +28,12 @@ config = {
     'optimizer': {'name': 'Adam',
                   'options': {'lr': 0.001, 'weight_decay': 0, 'amsgrad': True}},
     'lr_scheduler': {'name': 'StepLR',
-                     'options': {'step_size': 50, 'gamma': 0.1}}
+                     'options': {'step_size': 50, 'gamma': 0.1}},
+
+    # wandb init args
+    'project': 'test',
+    'entity': 'alstjrdlzz',
+    'name': '2023-04-10 test'
 }
 
 # fix random seeds for reproducibility
